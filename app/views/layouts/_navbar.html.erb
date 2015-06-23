@@ -1,0 +1,7 @@
+<nav class="navbar navbar-default col-sm-12">
+<% if current_user %>
+  <%= link_to "logout", logout_path %>
+<% else %>
+  <%= link_to "login with GitHub", "/auth/github" %>
+<% end %>
+</nav>
