@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   before_action :user
 
   def show
+    if is_authorized?(user.id)
+      render :show
+    else
+      redirect_to root_path
+      flash[:error] = "Not Authorized"
+    end
   end
 
   def edit
