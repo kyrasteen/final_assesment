@@ -1,0 +1,9 @@
+<h2>About You</h2>
+<%= form_for @user, url: user_path(@user.id) do |f| %>
+  <%= f.text_area :about, :maxlength => 500, placeholder: "What are you looking for in a pair...." %>
+  <% @languages.each do |language| %>
+    <%= f.label language.title %>
+    <input type="checkbox" id="<%= language.title %>" name="language[<%= language.title %>]">
+  <% end %>
+  <%= f.submit "Save My Info" %>
+<% end %>

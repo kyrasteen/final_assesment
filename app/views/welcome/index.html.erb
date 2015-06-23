@@ -1,2 +1,8 @@
 <div class="row">
+
+<% if current_user %>
+  <h2><%= current_user.username.capitalize %>'s Dashboard</h2>
+<% else %>
+  <h1 class="col-sm-8"><%= link_to "Login With GitHub", "/auth/github" %></h1>
+<% end %>
 </div>
