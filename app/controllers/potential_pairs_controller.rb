@@ -18,7 +18,10 @@ class PotentialPairsController < ApplicationController
   def update
     ppair = current_user.potential_pairs.find_by(requested_id: params[:potential].keys.first)
     if ppair.already_requested?
+      pair = User.find(ppair.requested_id)
+      current_user.potential_pairs.delete(ppair.id)
       Match.create(programmer_1: current_user.id, programmer_2: ppair.requested_id)
+      flash[:notice] = "Congratulations" + current_user.username + ", you are a match with" + pair.username
     else
       ppair.update_attributes!(accepted: true)
       redirect_to user_potential_pairs_path(current_user)
@@ -30,5 +33,6 @@ class PotentialPairsController < ApplicationController
     ppair = current_user.potential_pairs.find_by(requested_id: params[:potential].keys.first)
     current_user.potential_pairs.delete(ppair.id)
     redirect_to user_potential_pairs_path(current_user)
+    flash[:notice] = "Rejection saved, Ouch!"
   end
 end

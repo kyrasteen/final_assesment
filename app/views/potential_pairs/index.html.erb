@@ -3,21 +3,25 @@
 <div>
   <h5><%= @pair.username %></h5>
   <p><%= @pair.about %></p>
-  <%= @pair.image_url %>
-  <ul>
-    <%= @pair.languages.each do |language| %>
-      <li>language.title</li>
+  <img src="<%= @pair.image_url %>"</img>
+  <ul>languages I prefer:
+    <% @pair.languages.each do |language| %>
+      <li><%= language.title %></li>
       <% end %>
   </ul>
 
-  <%= form_for :potential_pairs, url: user_potential_pair_path(user_id: current_user.id, id: @potential_pair.id ), html: {method: :put} do |f| %>
-    <input type="hidden" name="potential[<%= @pair.id %>]">
-    <%= f.submit "Approve" %>
-  <% end %>
-
+  <div id="reject-form">
   <%= form_for :potential_pairs, url: user_potential_pairs_remove_path(user_id: current_user.id), html: {method: :delete} do |f| %>
     <input type="hidden" name="potential[<%= @pair.id %>]">
     <%= f.submit "Reject" %>
   <% end %>
+  </div>
+
+  <div id="accept-form">
+  <%= form_for :potential_pairs, url: user_potential_pair_path(user_id: current_user.id, id: @potential_pair.id ), html: {method: :put} do |f| %>
+    <input type="hidden" name="potential[<%= @pair.id %>]">
+    <%= f.submit "Approve" %>
+  <% end %>
+  </div>
 
 </div>

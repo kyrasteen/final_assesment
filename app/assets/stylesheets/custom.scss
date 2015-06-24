@@ -2,3 +2,37 @@ img{
   width:200px;
   height:200px;
 }
+
+.pairr a{
+  font-size:1.5em;
+  color:tomato !important;
+  margin:0 auto !important;
+  width:200px !important;
+  display:block;
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.navi-btn{
+  float:right !important;
+  padding:20px;
+  color:orange !important;
+  font-size:1em;
+}
+
+body{
+  color:tomato;
+  text-align:center;
+  text-decoration:none !important;
+  list-style:none !important;
+}
+
+#accept-form{
+  float:right;
+  width:300px;
+}
+
+#reject-form{
+  float:left;
+  width:300px;
+}

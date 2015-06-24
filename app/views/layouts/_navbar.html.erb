@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default col-sm-12">
-<h1>Pairr</h1>
+<h1 class="pairr"><%= link_to "Pairr", root_path %></h1>
 <% if current_user %>
-  <%= link_to "logout", logout_path, method: :delete %>
+  <%= link_to "logout", logout_path, method: :delete, class: "navi-btn" %>
 <% else %>
-  <%= link_to "login with GitHub", "/auth/github" %>
+  <%= link_to "login with GitHub", "/auth/github", class: "navi-btn" %>
 <% end %>
 </nav>

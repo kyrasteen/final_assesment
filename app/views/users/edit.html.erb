@@ -1,9 +1,17 @@
 <h2>About You</h2>
 <%= form_for @user, url: user_path(@user.id) do |f| %>
-  <%= f.text_area :about, :maxlength => 500, placeholder: "What are you looking for in a pair...." %>
-  <% @languages.each do |language| %>
-    <%= f.label language.title %>
-    <input type="checkbox" id="<%= language.title %>" name="language[<%= language.title %>]">
-  <% end %>
-  <%= f.submit "Save My Info" %>
+  <div class="form-group">
+    <p>Tell Us About Yourself</p>
+    <%= f.text_area :about, :maxlength => 500, placeholder: "What are you looking for in a pair...." %>
+  </div>
+  <div class="form-group">
+    <p>What Are Your Preffered Programming Languages?</p>
+    <% @languages.each do |language| %>
+      <%= f.label language.title %>
+      <input type="checkbox" id="<%= language.title %>" name="language[<%= language.title %>]">
+    <% end %>
+    <div class="form-group">
+      <%= f.submit "Save My Info" %>
+    </div>
+  </div>
 <% end %>

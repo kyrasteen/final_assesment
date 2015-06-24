@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "User information" do
   before(:each) do
+    Language.create(title: "Ruby")
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       'provider' => 'github',
       'uid' => "2328988092",

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Find Pairs" do
   before(:each) do
+    Language.create(title: "Ruby")
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       'provider' => 'github',
       'uid' => "2328988092",
@@ -31,7 +32,7 @@ describe "Find Pairs" do
     user.languages.create(title: "Ruby")
 
     fill_in("user[about]", with: "i like pizza")
-    check("Java")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
 
@@ -45,7 +46,7 @@ describe "Find Pairs" do
     user2 = User.create(username: "joe", about: "i am a boy")
 
     fill_in("user[about]", with: "i like pizza")
-    check("Java")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Approve")
@@ -57,7 +58,7 @@ describe "Find Pairs" do
     User.create(username: "joe", about: "i am a boy")
 
     fill_in("user[about]", with: "i like pizza")
-    check("Java")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Reject")
@@ -69,7 +70,7 @@ describe "Find Pairs" do
     User.create(username: "joe", about: "i am a boy")
 
     fill_in("user[about]", with: "i like pizza")
-    check("Java")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     expect(page).to have_content(user.username)
