@@ -14,21 +14,21 @@ class User < ActiveRecord::Base
     user.token     = data.credentials.token
     user.save
 
-    create_all_potential_pairs(user)
+    update_all_potential_pairs(user)
     user
   end
 
-  def self.create_all_potential_pairs(user)
+  def self.update_all_potential_pairs(user)
     users = User.where.not(id: user.id)
     users.map do |other_user|
-      user.potential_pairs.create(requested_id: other_user.id)
+      user.potential_pairs.find_or_create_by(requested_id: other_user.id)
     end
   end
 
   def add_preferred_languages(chosen_languages)
     chosen_languages.each do |language|
       lang_id = Language.find_by(title: language)
-      user_languages.create(language_id: lang_id.id)
+      user_languages.create!(language_id: lang_id.id)
     end
   end
 end

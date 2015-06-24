@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     user.update_attributes!(about: params[:user][:about])
-    user.add_preferred_languages(params[:language].keys) if params[:langauge]
+    user.add_preferred_languages(params[:language].keys)
     if user.save
       redirect_to  root_path(user)
     else

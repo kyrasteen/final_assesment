@@ -45,6 +45,8 @@ User.create(username: "john", about: "we can figure anything out", image_url: "h
 
 2.times do
   User.all.each do |user|
-    user.languages.create(title: languages.sample)
+    language = Language.find_by(title: languages.sample)
+    ul = UserLanguage.create(user_id:user.id, language_id: language.id)
+    user.user_languages << ul
   end
 end

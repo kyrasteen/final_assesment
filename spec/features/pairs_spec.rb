@@ -28,7 +28,6 @@ describe "Find Pairs" do
   it "shows potential pairs on pair index page" do
     user = User.create(username: "betty", about: "i am a girl")
     user.languages.create(title: "Ruby")
-    Language.create(title: "Ruby")
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       'provider' => 'github',
       'uid' => "2328988092",
@@ -45,6 +44,7 @@ describe "Find Pairs" do
     click_link_or_button("login with GitHub")
 
     fill_in("user[about]", with: "i like pizza")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
 
@@ -73,6 +73,7 @@ describe "Find Pairs" do
     visit root_path
     click_link_or_button("login with GitHub")
     fill_in("user[about]", with: "i like pizza")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Approve")
@@ -99,6 +100,7 @@ describe "Find Pairs" do
     visit root_path
     click_link_or_button("login with GitHub")
     fill_in("user[about]", with: "i like pizza")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Reject")
@@ -108,6 +110,7 @@ describe "Find Pairs" do
   it "sees pairs first that have already requested them" do
     user = User.create(username: "betty", about: "i am a girl")
     User.create(username: "joe", about: "i am a boy")
+    Language.create(title: "Ruby")
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       'provider' => 'github',
@@ -124,6 +127,7 @@ describe "Find Pairs" do
     visit root_path
     click_link_or_button("login with GitHub")
     fill_in("user[about]", with: "i like pizza")
+    check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     expect(page).to have_content(user.username)

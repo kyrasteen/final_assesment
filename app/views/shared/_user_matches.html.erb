@@ -3,7 +3,7 @@
   <ul>You are matched with:
     <% current_user.matches.each do |match| %>
       <% if current_user == match.first_accepter %>
-        <li><%= match.secondary_accepter %></li>
+        <li><%= match.secondary_accepter.username %></li>
       <% else %>
         <li><%= match.first_accepter.username %></li>
       <% end %>
