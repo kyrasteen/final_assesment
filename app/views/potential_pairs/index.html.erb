@@ -1,10 +1,10 @@
 <h3>Find Your Next Pair!</h3>
 
 <div>
-  <h5><%= @pair.username %></h5>
+  <h3><%= @pair.username.capitalize %></h3>
   <p><%= @pair.about %></p>
   <img src="<%= @pair.image_url %>"</img>
-  <ul>languages I prefer:
+  <ul><h3>languages I prefer:</h3>
     <% @pair.languages.each do |language| %>
       <li><%= language.title %></li>
       <% end %>

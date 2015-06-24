@@ -29,6 +29,7 @@ describe "match" do
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Approve")
+
     expect(page).to have_content("Congratulations")
   end
 end
