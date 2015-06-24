@@ -48,7 +48,7 @@ describe "Find Pairs" do
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
 
-    expect(page).to have_content(user.username)
+    expect(page).to have_content(user.username.capitalize)
     expect(page).to have_content(user.about)
     expect(page).to have_content("Ruby")
   end
@@ -77,7 +77,7 @@ describe "Find Pairs" do
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Approve")
-    expect(page).to have_content(user2.username)
+    expect(page).to have_content(user2.username.capitalize)
   end
 
   it "can reject pair" do
@@ -130,6 +130,6 @@ describe "Find Pairs" do
     check("Ruby")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
-    expect(page).to have_content(user.username)
+    expect(page).to have_content(user.username.capitalize)
   end
 end
