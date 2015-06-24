@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_auth(request.env["omniauth.auth"])
     if user
       session[:user_id] = user.id
-      if user.languages.empty?
+      if user.user_languages.empty?
         redirect_to edit_user_path(user)
       else
         redirect_to user_path(user)
