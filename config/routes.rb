@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
    get '/auth/:provider/callback', to: "sessions#create"
    delete '/logout', to: "sessions#destroy"
-   resources :users
+
+   resources :users do
+     resources :potential_pairs, only: [:show, :index, :edit, :update]
+     delete '/potential_pairs/remove', to: "potential_pairs#remove"
+   end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
