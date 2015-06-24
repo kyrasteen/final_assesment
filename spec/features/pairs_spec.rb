@@ -53,14 +53,25 @@ describe "Find Pairs" do
   end
 
   it "can reject pair" do
-    User.create(username: "betty", about: "i am a girl")
-    user2 = User.create(username: "joe", about: "i am a boy")
+    user = User.create(username: "betty", about: "i am a girl")
+    User.create(username: "joe", about: "i am a boy")
 
     fill_in("user[about]", with: "i like pizza")
     check("Java")
     click_link_or_button("Save My Info")
     click_link_or_button("Find Pairs")
     click_link_or_button("Reject")
-    expect(page).to have_content("Rejected!")
+    expect(page).to have_content(user.username + "Rejected!")
+  end
+
+  xit "sees pairs first that have already requested them" do
+    user = User.create(username: "betty", about: "i am a girl")
+    User.create(username: "joe", about: "i am a boy")
+
+    fill_in("user[about]", with: "i like pizza")
+    check("Java")
+    click_link_or_button("Save My Info")
+    click_link_or_button("Find Pairs")
+    expect(page).to have_content(user.username)
   end
 end

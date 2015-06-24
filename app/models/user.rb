@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :user_languages
   has_many :languages, through: :user_languages
   has_many :potential_pairs, class_name: :PotentialPair, foreign_key: "requester_id"
+  has_many :matches, class_name: :Match, foreign_key: "programmer1_id"
 
   def self.find_or_create_from_auth(data)
     user = User.find_or_create_by(provider: data.provider, uid: data.uid)

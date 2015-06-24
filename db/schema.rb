@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624051019) do
+ActiveRecord::Schema.define(version: 20150624065111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "languages", force: :cascade do |t|
     t.string "title"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "programmer1_id"
+    t.integer "programmer2_id"
   end
 
   create_table "potential_pairs", force: :cascade do |t|
