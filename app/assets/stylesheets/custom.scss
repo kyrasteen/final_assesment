@@ -15,6 +15,7 @@ nav{
 body{
   color:tomato !important;
   text-align:center !important;
+  background-color:gray;
 }
 
 li{
@@ -40,10 +41,3 @@ li{
   width:300px;
 }
 
-.homepage{
-  background: url(back.jpg) no-repeat center center fixed !important;
-    -webkit-background-size: cover !important;
-      -moz-background-size: cover;
-        -o-background-size: cover;
-          background-size: cover;
-}

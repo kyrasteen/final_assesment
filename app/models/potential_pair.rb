@@ -6,4 +6,10 @@ class PotentialPair < ActiveRecord::Base
     accepted == true
   end
 
+  def self.next(current_user)
+    requested_pairs   = where(["requested_id = ? and accepted = ? ", current_user.id, true])
+    unrequested_pairs = where(["requester_id = ? and accepted = ? ", current_user.id, false])
+    (requested_pairs  + unrequested_pairs).first
+  end
+
 end

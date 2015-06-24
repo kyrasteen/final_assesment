@@ -20,7 +20,7 @@ describe "match" do
 
     auth_user = User.find_or_create_from_auth(data)
     ppair = PotentialPair.where(requester_id: auth_user.id, requested_id: user.id)
-    ppair.update_attributes!(accepted: true)
+    ppair.first.update_attributes!(accepted: true)
 
     visit root_path
     click_link_or_button("login with GitHub")

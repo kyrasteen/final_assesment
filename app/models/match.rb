@@ -14,7 +14,6 @@ class Match < ActiveRecord::Base
   def remove_from_potential_pairing
     first_sequence = first_accepter.potential_pairs.where(requested_id: secondary_accepter.id).first
     second_sequence = secondary_accepter.potential_pairs.where(requested_id: first_accepter.id).first
-    PotentialPair.delete(first_sequence.id)
-    PotentialPair.delete(second_sequence.id)
+    PotentialPair.delete([first_sequence.id, second_sequence.id])
   end
 end

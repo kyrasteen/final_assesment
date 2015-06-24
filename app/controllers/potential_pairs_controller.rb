@@ -1,9 +1,7 @@
 class PotentialPairsController < ApplicationController
 
   def index
-    requested_pairs = PotentialPair.where(["requested_id = ? and accepted = ? ", current_user.id, true])
-    unrequested_pairs = current_user.potential_pairs.where(accepted: false)
-    @potential_pair = (requested_pairs + unrequested_pairs).first
+    @potential_pair = PotentialPair.next(current_user)
     if @potential_pair
       if @potential_pair.requested_id == current_user.id
         @pair = User.find(@potential_pair.requester_id)
@@ -24,8 +22,6 @@ class PotentialPairsController < ApplicationController
     if ppair.already_requested?
       pair = User.find(ppair.requested_id)
       Match.make(current_user, pair)
-      # match = current_user.matches.create(second_accepter_id: pair.id)
-      # match.remove_from_potential_pairing
       redirect_to user_potential_pairs_path(current_user)
       flash[:notice] = "Congratulations " + current_user.username + ", you are a match with " + pair.username
     else

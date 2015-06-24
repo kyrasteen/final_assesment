@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       if user.user_languages.empty?
         redirect_to edit_user_path(user)
       else
-        redirect_to user_path(user)
+        redirect_to root_path
       end
     else
       flash[:error] = "something went wrong"
