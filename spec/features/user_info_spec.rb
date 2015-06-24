@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe "User information" do
-  before(:each) do
+
+  it "is collected upon first login" do
     Language.create(title: "Ruby")
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       'provider' => 'github',
@@ -17,13 +18,11 @@ describe "User information" do
 
     visit root_path
     click_link_or_button("login with GitHub")
-  end
-
-  it "is collected upon first login" do
     fill_in("user[about]", with: "i like pizza")
     check("Ruby")
     click_link_or_button("Save My Info")
     expect(current_path).to eq(root_path)
     expect(page).to have_content("Dashboard")
   end
+
 end

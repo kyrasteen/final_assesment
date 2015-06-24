@@ -1,30 +1,33 @@
 img{
   width:200px;
-  height:200px;
+  height:auto;
 }
 
-.pairr a{
+.pairr {
   font-size:1.5em;
   color:tomato !important;
-  margin:0 auto !important;
-  width:200px !important;
-  display:block;
-  margin-top:0px;
-  margin-bottom:0px;
 }
 
-.navi-btn{
-  float:right !important;
-  padding:20px;
+nav{
   color:orange !important;
-  font-size:1em;
 }
 
 body{
-  color:tomato;
-  text-align:center;
-  text-decoration:none !important;
+  color:tomato !important;
+  text-align:center !important;
+}
+
+li{
   list-style:none !important;
+}
+
+.border{
+  border: 1px solid tomato !important;
+  padding:30px;
+  margin-top:100px;
+  a{
+    color:tomato !important;
+  }
 }
 
 #accept-form{
@@ -35,4 +38,12 @@ body{
 #reject-form{
   float:left;
   width:300px;
+}
+
+.homepage{
+  background: url(back.jpg) no-repeat center center fixed !important;
+    -webkit-background-size: cover !important;
+      -moz-background-size: cover;
+        -o-background-size: cover;
+          background-size: cover;
 }

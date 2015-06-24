@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     if is_authorized?(user.id)
-      render :show
+      redirect_to root_path
     else
       redirect_to root_path
       flash[:error] = "Not Authorized"
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def update
     user.update_attributes!(about: params[:user][:about])
     user.add_preferred_languages(params[:language].keys) if params[:langauge]
-    if user
+    if user.save
       redirect_to  root_path(user)
     else
       redirect_to :back

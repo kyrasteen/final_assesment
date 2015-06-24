@@ -2,10 +2,10 @@
 <div class="col-sm-4">
   <ul>You are matched with:
     <% current_user.matches.each do |match| %>
-      <% if current_user == match.requester %>
-        <li><%= match.requested.username %></li>
+      <% if current_user == match.first_accepter %>
+        <li><%= match.secondary_accepter %></li>
       <% else %>
-        <li><%= match.requester.username %></li>
+        <li><%= match.first_accepter.username %></li>
       <% end %>
     <% end %>
   </ul>

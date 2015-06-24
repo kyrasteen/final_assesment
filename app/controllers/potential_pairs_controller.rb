@@ -20,10 +20,12 @@ class PotentialPairsController < ApplicationController
     if ppair.already_requested?
       pair = User.find(ppair.requested_id)
       current_user.potential_pairs.delete(ppair.id)
-      Match.create(programmer_1: current_user.id, programmer_2: ppair.requested_id)
-      flash[:notice] = "Congratulations" + current_user.username + ", you are a match with" + pair.username
+      current_user.matches.create(second_accepter_id: pair.id)
+      redirect_to user_potential_pairs_path(current_user)
+      flash[:notice] = "Congratulations " + current_user.username + ", you are a match with " + pair.username
     else
       ppair.update_attributes!(accepted: true)
+      ppair.save
       redirect_to user_potential_pairs_path(current_user)
       flash[:notice] = "Request Saved"
     end

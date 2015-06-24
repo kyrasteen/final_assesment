@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_authorized?(id)
-    current_user && current_user.id == (params[:id])
+    current_user && current_user.id.to_s == (params[:id])
   end
 
 end

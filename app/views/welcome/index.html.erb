@@ -1,13 +1,21 @@
+<div class="homepage">
 <div class="row">
 
 <% if current_user %>
-  <h2><%= current_user.username.capitalize %>'s Dashboard</h2>
-  <%= image_tag current_user.image_url %>
+  <div class="span12">
+    <h2><%= current_user.username.capitalize %>'s Dashboard</h2>
+  </div>
 
-  <%= render partial: "shared/user_matches" %>
+  <div class="span5">
+    <%= image_tag current_user.image_url %>
+    <%= render partial: "shared/user_matches" %>
+  </div>
 
   <h3><%= link_to "Find Pairs", user_potential_pairs_path(user_id: current_user.id) %></h3>
 <% else %>
-  <h1 class="col-sm-8"><%= link_to "Login With GitHub", "/auth/github" %></h1>
+  <div class="span10">
+    <h1 class="border col-sm-10 col-sm-offset-1"><%= link_to "Login With GitHub", "/auth/github" %></h1>
+  </div>
 <% end %>
+</div>
 </div>

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :user_languages
   has_many :languages, through: :user_languages
   has_many :potential_pairs, class_name: :PotentialPair, foreign_key: "requester_id"
-  has_many :matches, class_name: :Match, foreign_key: "programmer1_id"
+  has_many :matches, class_name: :Match, foreign_key: "first_accepter_id"
 
   def self.find_or_create_from_auth(data)
     user = User.find_or_create_by(provider: data.provider, uid: data.uid)
@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
 
   def add_preferred_languages(chosen_languages)
     chosen_languages.each do |language|
-      preferred_language = Language.create(title: language)
-      languages << preferred_language
+      lang_id = Language.find_by(title: language)
+      user_languages.create(language_id: lang_id.id)
     end
   end
 end
